@@ -2,14 +2,16 @@
 import configparser
 import requests
 import json
-import tkinter
+import tkinter as tk
 
 config = configparser.ConfigParser()
 config.read("config.ini")
 # api_key = config.get("chatgpt", "apikey")
 
-
-
+# tkinter GUI
+root = tk.Tk()
+root.title("Chatbot Window")
+root.mainloop()
 
 ollama_host = config.get("ollama", "host")
 ollama_url = config.get("ollama", "url")
@@ -33,7 +35,7 @@ The pet rent is $25 per month per pet\
 # create function to query the ollama server with a chat prompt
 def query_ollama(prompt):
     # notify user of host and model, will act as a test
-    print(f'We are going to use {ollama_host} and the model {ollama_model}')
+    print(f'We are using Ollama and the model {ollama_model}')
     # calls the ollama server's chat function
     url = f'{ollama_url}/api/chat'
     # create a dictionary with the model and the message, payload is what is sent to the server
@@ -42,7 +44,7 @@ def query_ollama(prompt):
         "messages": [
             {
                 "role": "system",
-                "content": "You are a helpful apartment community leasing agent, use the context to answer any user queries.\n\nCONTEXT:\n" + context
+                "content": "You are a helpful apartment community leasing agent, use the context to brifly answer any user queries.\n\nCONTEXT:\n" + context
             },
             {
                  "role": "user",
@@ -70,7 +72,7 @@ def query_ollama(prompt):
 
 
 def main():
-    prompt = "I'm interested in renting an apartment"
+    prompt = "Tell me about your 1 bedroom apartments"
     result = query_ollama(prompt)
     print(result)
 
