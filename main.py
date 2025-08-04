@@ -3,6 +3,9 @@ import configparser
 import requests
 import json
 import tkinter as tk
+# from tkinter import messagebox
+from tkinter import Label, Tk
+from tkinter import Text,Tk
 
 config = configparser.ConfigParser()
 config.read("config.ini")
@@ -11,6 +14,15 @@ config.read("config.ini")
 # tkinter GUI
 root = tk.Tk()
 root.title("Chatbot Window")
+root.geometry("450x300")
+root.configure(bg= "light blue")
+heading = Label(root, 
+                text = "Welcome! I'm a customer service agent.",
+                font = ("Arial", 12, "bold")
+)
+heading.place(x=10, y=5)
+chat_history = Text(root, fg='black', border= 2, bg='white', height=10, width=40)
+chat_history.place(x=10, y=90)
 root.mainloop()
 
 ollama_host = config.get("ollama", "host")
@@ -25,6 +37,7 @@ The two bedroom floor plan is 900 squarefeet\
 The three bedroom floor plan is 1150 squarefeet\
 All units have a full-size washer and dryer included\
 The community features a resort style swimming pool, pickleball court, and a fitness center\
+If they ask about pets you can give them the below pet info
 Pets are allowed with certain breed restrictions\
 Max of 2 pets per home\
 The pet fee is a one-time fee of $150\
@@ -44,7 +57,7 @@ def query_ollama(prompt):
         "messages": [
             {
                 "role": "system",
-                "content": "You are a helpful apartment community leasing agent, use the context to brifly answer any user queries.\n\nCONTEXT:\n" + context
+                "content": "You are an apartment manager. Use the context to very briefly answer user queries. No more than 2 sentences. \n\nCONTEXT:\n" + context
             },
             {
                  "role": "user",
@@ -72,34 +85,10 @@ def query_ollama(prompt):
 
 
 def main():
-    prompt = "Tell me about your 1 bedroom apartments"
+    prompt = "Tell me about your two bedroom apartments"
     result = query_ollama(prompt)
     print(result)
 
-'''
-def get_completion(prompt, model="gpt-3.5-turbo"):
-    messages = [{"role": "user", "content": prompt}]
-    response = openai.ChatCompletion.create(
-        model=model,
-        messages=messages,
-        temperature=0, # this is the degree of randomness of the model's output
-    )
-    return response.choices[0].message["content"]
-
-def get_completion_from_messages(messages, model="gpt-3.5-turbo", temperature=0):
-    response = openai.ChatCompletion.create(
-        model=model,
-        messages=messages,
-        temperature=temperature, # this is the degree of randomness of the model's output
-    )
-#     print(str(response.choices[0].message))
-    return response.choices[0].message["content"]
-   
-'''
-'''
-messages =  [  
-{'role':'system', 'content':'You are friendly chatbot.'}]
-'''
 
 
 
