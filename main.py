@@ -6,23 +6,62 @@ import tkinter as tk
 # from tkinter import messagebox
 from tkinter import Label, Tk
 from tkinter import Text,Tk
+from tkinter import Button
 
 config = configparser.ConfigParser()
 config.read("config.ini")
 # api_key = config.get("chatgpt", "apikey")
 
+
+'''
+# function to display chatbot response in GUI
+def show_chatbot_response():
+    user_input = user_input_box.get("1.0", END)
+    user_input_box.delete("1.0", END)
+
+    if user_input.lower() in ["exit", "quit", "bye"]:
+        chat_history.insert(tk.END, "Chatbot: Goodbye!\n")
+        return
+    
+    chat_history.insert(tk.END, "You: " + user_input + "\n")
+    chatbot_response = get_chatbot_response(user_input)
+    chat_history.insert(tk.END, "Chatbot: " + chatbot_response + "\n")
+'''
+
 # tkinter GUI
 root = tk.Tk()
 root.title("Chatbot Window")
-root.geometry("450x300")
+root.geometry("500x300")
 root.configure(bg= "light blue")
+
+# Heading text
 heading = Label(root, 
-                text = "Welcome! I'm a customer service agent.",
+                text = "Hi! I'm a customer service agent. I can help with your questions.",
                 font = ("Arial", 12, "bold")
 )
 heading.place(x=10, y=5)
-chat_history = Text(root, fg='black', border= 2, bg='white', height=10, width=40)
-chat_history.place(x=10, y=90)
+
+# chat history box
+chat_history = Text(root, fg='black', border= 2, bg='white', height=10, width=50)
+chat_history.place(x=10, y=60)
+
+'''
+#scroll bar
+scrollbar = scrollbar(chat_history)
+scrollbar.place(relheight =1, relx =.974)
+scrollbar = (command= chat_history.yview)
+'''
+
+# bottom chat entry box
+
+user_input_box = Text(root,height = 3, width = 50, padx=.5)
+user_input_box.place(x=10, y= 235)
+
+# send button
+send_button = Button(root, text = "Send", font ="bold", bg="grey", command= show_chatbot_response)
+send_button.place(x= 430, y= 242)
+
+
 root.mainloop()
 
 ollama_host = config.get("ollama", "host")
@@ -36,8 +75,11 @@ The one bedroom floor plan is 700 squarefeet\
 The two bedroom floor plan is 900 squarefeet\
 The three bedroom floor plan is 1150 squarefeet\
 All units have a full-size washer and dryer included\
+Current rental rates are available on our website or by contacting the community directly.\
 The community features a resort style swimming pool, pickleball court, and a fitness center\
-If they ask about pets you can give them the below pet info
+Finish your responce by asking what else you can help with.\
+If you can not help invite them to contact the office directly.\
+If they ask about pets you can give them the below pet info\
 Pets are allowed with certain breed restrictions\
 Max of 2 pets per home\
 The pet fee is a one-time fee of $150\
@@ -85,7 +127,7 @@ def query_ollama(prompt):
 
 
 def main():
-    prompt = "Tell me about your two bedroom apartments"
+    prompt = "Do you have 1 bedroom apartments?"
     result = query_ollama(prompt)
     print(result)
 
