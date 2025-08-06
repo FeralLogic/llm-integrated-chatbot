@@ -15,7 +15,7 @@ ollama_model = config.get("ollama", "model")
 
 # context for Ollama model
 context = """
-The apartment community is called Baxter Court Luxury Apartment Homes\
+The apartment community is called ABC Luxury Apartment Homes\
 There are 300 units\
 The community consists of one bedroom, two bedroom, and three bedroom apartment homes\
 The one bedroom floor plan is 700 squarefeet\
@@ -23,9 +23,9 @@ The two bedroom floor plan is 900 squarefeet\
 The three bedroom floor plan is 1150 squarefeet\
 All units have a full-size washer and dryer included\
 Current rental rates are available on our website or by contacting the community directly.\
-The community features a resort style swimming pool, pickleball court, and a fitness center\
-Finish your responce by asking what else you can help with.\
+Finish your response by asking what else you can help with.\
 If you can not help invite them to contact the office directly.\
+The community features a resort style swimming pool, pickleball court, and a fitness center\
 If they ask about pets you can give them the below pet info\
 Pets are allowed with certain breed restrictions\
 Max of 2 pets per home\
@@ -95,10 +95,17 @@ root.configure(bg= "royalblue")
 
 # Heading text
 heading = Label(root, 
-                text = "Hi! I'm a Chatbot created with Ollama.",
+                text = "Hi! I'm a customer service Chatbot for ABC Apartments.",
                 font = ("Arial", 12, "bold")
 )
 heading.place(x=10, y=5)
+
+# sub heading
+subheading = Label(root, 
+                text = "Type your questions below.",
+                font = ("Arial", 10)
+)
+subheading.place(x=10, y=35)
 
 # chat history box
 chat_history = ScrolledText(root, fg='black', border= 2, bg='white', height=10, width=50, wrap="word")
