@@ -95,7 +95,7 @@ root.configure(bg= "royalblue")
 
 # Heading text
 heading = Label(root, 
-                text = "Hi! I'm a customer service Chatbot for ABC Apartments.",
+                text = "Hi! I'm a customer service Chatbot.",
                 font = ("Arial", 12, "bold")
 )
 heading.place(x=10, y=5)
@@ -118,7 +118,7 @@ user_input_box.place(x=10, y= 235)
 
 # send button
 send_button = Button(root, text = "Send", font ="bold", bg="grey", command= show_chatbot_response)
-send_button.place(x= 430, y= 242)
+send_button.place(x= 435, y= 242)
 
 
 root.mainloop()
