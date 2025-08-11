@@ -124,16 +124,8 @@ send_button.place(x= 435, y= 242)
 root.mainloop()
 
 '''
-def main():
-    prompt = "Do you have 1 bedroom apartments?"
-    result = query_ollama(prompt)
-    print(result)
+# To test without the GUI
 
-
-if __name__ == "__main__":
-    main()
-'''
-'''
 if __name__ == "__main__":
     print(query_ollama("Do you allow pets"))
 '''
