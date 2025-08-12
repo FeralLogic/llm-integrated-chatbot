@@ -1,6 +1,6 @@
-# Apartment Chatbot using Ollama's Mistral Model
+# Apartment Chatbot using Ollama and Mistral Model
 
-This project demonstrates a simple chatbot application built with Python using the Ollama Mistral language model and Python's Tkinter module for a GUI.
+This project demonstrates a simple chatbot application built with Python using Ollama and Mistral language model and Python's Tkinter module for a GUI.
 
 <img width="507" height="337" alt="Chatbot" src="https://github.com/user-attachments/assets/cfd022d2-0999-4c58-9244-e217bef3a664" />
 
